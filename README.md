@@ -1,6 +1,6 @@
 # Expense_tracker
 
-An app that manages your daile expenses
+An app that manages your daily expenses
 
 ## Getting Started
 
