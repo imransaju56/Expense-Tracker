@@ -16,14 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final List<Transaction> _usertransactions= [
-    Transaction(
-        id: '1', title: 'New pants', amount: 69.99, date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'Weekly grocery', amount: 80.99, date: DateTime.now()),
-    Transaction(
-        id: 't3', title: 'buying foods', amount: 70.99, date: DateTime.now()),
-  ];
+  final List<Transaction> _usertransactions= [];
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -43,7 +36,8 @@ class _MyAppState extends State<MyApp> {
       context: ctx,
       builder: (_) {
         return GestureDetector(
-          onTap: () {},
+          onTap: () {
+          },
           child: NewTransaction(_addNewTransaction),
           behavior: HitTestBehavior.opaque,
         );
@@ -63,20 +57,22 @@ class _MyAppState extends State<MyApp> {
         ],
         title: Text('Expense Tracker'),
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('CHART'),
-                elevation: 5,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity,
+                child: Card(
+                  color: Colors.blue,
+                  child: Text('CHART'),
+                  elevation: 5,
+                ),
               ),
-            ),
-            TransactionList(transactions:_usertransactions,),
+              TransactionList(transactions:_usertransactions,),
 
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

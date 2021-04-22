@@ -11,36 +11,38 @@ class NewTransaction extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Card(
 
-      child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Enter Title',
+      child: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: [
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter Title',
+                ),
+                controller: titleController,
               ),
-              controller: titleController,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Enter Amount',
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Enter Amount',
+                ),
+
+                controller: amountController,
+              ),
+              TextButton(
+                onPressed: (){
+                  addTx(titleController.text,num.parse(amountController.text));
+
+
+                },
+
+                child: Text("Add Transaction",style: TextStyle(
+                  color: Colors.purple,
+                ),),
               ),
 
-              controller: amountController,
-            ),
-            TextButton(
-              onPressed: (){
-                addTx(titleController.text,num.parse(amountController.text));
-
-
-              },
-
-              child: Text("Add Transaction",style: TextStyle(
-                color: Colors.purple,
-              ),),
-            ),
-
-          ],
+            ],
+          ),
         ),
       ),
     );
