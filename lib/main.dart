@@ -57,30 +57,27 @@ class _MyAppState extends State<MyApp> {
         ],
         title: Text('Expense Tracker'),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.blue,
-                  child: Text('CHART'),
-                  elevation: 5,
-                ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.blue,
+                child: Text('CHART'),
+                elevation: 5,
               ),
-              TransactionList(transactions:_usertransactions,),
+            ),
+            TransactionList(transactions:_usertransactions,),
 
-            ],
-          ),
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          _startAddNewTransaction(context);
-        },
+        onPressed: () => _startAddNewTransaction(context),
+
       ),
     );
   }
