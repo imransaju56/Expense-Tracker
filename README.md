@@ -1,6 +1,6 @@
-# expense_tracker
+# Expense_tracker
 
-A app that manages your daile expenses
+An app that manages your daile expenses
 
 ## Getting Started
 
