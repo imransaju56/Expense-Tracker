@@ -1,5 +1,6 @@
 
 import 'package:expense_tracker/Model/transaction.dart';
+import 'package:expense_tracker/Widget/chart.dart';
 import 'package:expense_tracker/Widget/new_transaction.dart';
 import 'package:expense_tracker/Widget/transaction_list.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,11 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(MaterialApp(
     home: MyApp(),
+    theme: ThemeData(
+      primarySwatch: Colors.purple,
+      fontFamily: 'Quicksand',
+
+    ),
   ));
 }
 
@@ -16,6 +22,19 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+
+  List<Transaction> get _recentTransaction{
+    return _usertransactions.where((element) =>
+        element.date.isAfter(DateTime.now().subtract(Duration(days: 7)
+        )
+        )
+    ).toList();
+    
+  }
+  
+
+
   final List<Transaction> _usertransactions= [];
 
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -47,27 +66,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(_recentTransaction.length);
+
     return Scaffold(
       appBar: AppBar(
+        title: Text('Expense Tracker'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () => _startAddNewTransaction(context),
           ),
         ],
-        title: Text('Expense Tracker'),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('CHART'),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransaction),
             TransactionList(transactions:_usertransactions,),
 
           ],
